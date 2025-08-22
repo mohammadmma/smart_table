@@ -3,10 +3,7 @@ from celery import Celery
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "backend.settings")
 
-app = Celery(
-    'backend',
-    broker='redis://localhost:6379/0',
-)
+app = Celery('backend')
 
 # - namespace='CELERY' means all celery-related configuration keys
 #   should have a `CELERY_` prefix.

@@ -1,3 +1,11 @@
+
+
+
+# Celery settings
+
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+
+
 """
 Django settings for backend project.
 
