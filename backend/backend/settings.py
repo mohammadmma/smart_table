@@ -1,11 +1,3 @@
-
-
-
-# Celery settings
-
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
-
-
 """
 Django settings for backend project.
 
@@ -41,16 +33,22 @@ DEBUG = env("DEBUG")
 
 ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS")
 
+# Celery settings
+
+CELERY_BROKER_URL = env("REDIS_URL")
+
 
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'channels',
     'rest_framework',
     'sensor',
 ]
@@ -83,6 +81,18 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'backend.wsgi.application'
+ASGI_APPLICATION = 'backend.asgi.application'
+
+
+# Redis Channel Layer
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("redis", 6379)],
+        },
+    },
+}
 
 
 # Database
