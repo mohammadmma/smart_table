@@ -1,0 +1,64 @@
+**Smart Table IoT Project**
+    This project is an IoT-enabled smart table system, featuring a Django backend, MQTT integration for sensor data, and Docker-based deployment.
+
+
+**Features**
+    Django Backend: REST API, WebSocket support, Celery for background tasks.
+    Sensor App: Handles sensor data, MQTT subscription, and real-time updates.
+    MQTT Broker: Mosquitto for reliable message delivery.
+    Dockerized: Easy setup and deployment using Docker Compose.
+
+
+**Project Structure**
+    backend/           # Django project and apps
+    └── sensor/      # Sensor app (MQTT, models, views, tasks)
+    mosquitto/         # Mosquitto MQTT broker config
+    docker-compose.yml # Multi-container orchestration
+    test.py            # Project-level test script
+
+
+**Getting Started**
+Prerequisites
+    Docker & Docker Compose
+    Python 3.12+ (for local development)
+    MQTT client (optional, for testing)
+
+Quick Start
+    Clone the repository
+        >>>git clone <your-repo-url>
+        >>>cd smart_table
+
+    Build and start services
+        >>>docker-compose up --build
+
+    Access Django backend
+        Default: http://localhost:8000/
+
+    MQTT Broker
+        Host: localhost
+        Port: 1883
+        Config: mosquitto.conf
+
+
+**Development**
+    Backend: Django app in backend
+    Sensor App: MQTT logic in mqtt_subscriber.py
+    Celery: Background tasks in tasks.py
+
+
+**Run Migrations**
+    >>>docker-compose exec backend python manage.py migrate
+
+
+**Create Superuser**
+    >>>docker-compose exec backend python manage.py createsuperuser
+
+
+**Testing**
+    Run tests:
+        >>>docker-compose exec backend python manage.py test
+
+
+**Configuration**
+    Mosquitto: Edit mosquitto.conf as needed.
+    Django Settings: See settings.py.
